@@ -1,6 +1,7 @@
 import React,{useState} from 'react'
 import { NavBar } from './components/NavBar';
-import { Form } from './components/Form';
+import { FormPage } from './pages/FormPage';
+import { PhotosPage } from './pages/PhotosPage';
 import {
   BrowserRouter as Router,
   Switch,
@@ -21,14 +22,11 @@ export const App =()=> {
 
   return (
     <>
-      <Router>
         <NavBar />
           <Switch>
-            <Route path="/" />
-            <Route path="/photos" />
+            <Route exact path="/" component={FormPage} />
+            <Route path='/photos/:value' component={PhotosPage}/>
           </Switch>
-      </Router>
-      <Form lastTags={lastTags} />
     </>
   );
 }
