@@ -24,19 +24,13 @@ export const ImgContainer = styled.div`
   display:inline-block;
   margin:25px;
   align-items:center;
-  border:5px solid lightblue;
+  border:5px solid gray;
 `
 
-export const FooterWrapper = styled.div`
+export const TagWrapper = styled.div`
 display:flex;
-height:5vh;
 background:dark-gray
 min-width:100wv;
-width:100%;
-justify-content:space-around
-
-`
-export const LinkWrapper = styled.div`
-display:flex;
-color:white;
+flex-direction:column;
+color:black;
 `

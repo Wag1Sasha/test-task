@@ -1,9 +1,8 @@
-import React,{useState} from 'react'
+import React from 'react'
 import { NavBar } from './components/NavBar';
 import { FormPage } from './pages/FormPage';
 import { PhotosPage } from './pages/PhotosPage';
 import {
-  BrowserRouter as Router,
   Switch,
   Route,
 } from "react-router-dom";
@@ -11,14 +10,6 @@ import {
 
 
 export const App =()=> {
-
-  const [lastTags,setLastTags] = useState([])
-
-  // const sortLastTags =()=>{
-  //   if(lastTags.length === 3){
-  //      lastTags.splice(1,-1)
-  //   }
-  // }
 
   return (
     <>

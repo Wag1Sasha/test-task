@@ -9,9 +9,9 @@ export const PhotosPage =()=>{
   const [data,setData] = useState([])
 
     useEffect(()=>{
-     fetch(`https://pixabay.com/api/?key=19776687-7c6cc257a41e8830f998f821c&q=${value}`)
-    .then(res =>res.json())
-    .then(data=>setData(data.hits))
+      fetch(`https://pixabay.com/api/?key=19776687-7c6cc257a41e8830f998f821c&q=${value}`)
+    .then(res => res.json())
+    .then(data=> setData(data.hits))
     })
 
 

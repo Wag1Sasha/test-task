@@ -2,18 +2,20 @@ import React, {useState} from 'react'
 import { Button } from 'react-bootstrap';
 import InputGroup from 'react-bootstrap/InputGroup'
 import FormControl from 'react-bootstrap/FormControl'
-import {AppContainer} from '../styled-components/styledComponents'
+import {AppContainer, TagWrapper} from '../styled-components/styledComponents'
 import {Link} from "react-router-dom";
+import {useSelector , useDispatch} from 'react-redux'
+import { addTag, deleteLastTag } from '../redux/actions';
 // import {FooterWrapper} from '../styled-components/styledComponents'
 
 
 
-export const FormPage =({sortLastTags, lastTags})=>{
+export const FormPage =()=>{
 
   const [value, setValue] = useState('')
  
-  
-
+  const tagsState = useSelector(state => state.tags.lastTags)
+  const dispatch = useDispatch()
 
   const handleChange =(e)=>{
     setValue(e.target.value);
@@ -21,10 +23,11 @@ export const FormPage =({sortLastTags, lastTags})=>{
 
 
   const handleSubmit =()=>{
+    if(tagsState.length === 3){
+      dispatch(deleteLastTag())
+    }
     if (value.trim() === "") return;
-    // sortLastTags()
-    // lastTags.push(value)
-  
+    dispatch(addTag(value))
   }
 
   return (
@@ -42,13 +45,13 @@ export const FormPage =({sortLastTags, lastTags})=>{
           <Link to={`/photos/${value}`}><Button variant="outline-secondary" onClick={handleSubmit}>Search</Button></Link>
           </InputGroup.Append>
         </InputGroup>
+        <h2>Show last 3 tags :</h2>
+        <TagWrapper>
+        {tagsState.map((tag)=>(
+          <h3 key={Math.random()}>{tag}</h3>
+        ))}
+      </TagWrapper>
       </AppContainer>
-      
-      {/* <FooterWrapper>
-      {lastTags.map(tag=>(
-        <h3 key={Math.random()}>{tag}</h3>
-          ))}
-      </FooterWrapper> */}
     </>
   );
 }
