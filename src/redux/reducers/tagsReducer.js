@@ -1,18 +1,25 @@
-import { ADD_TAG, DELETE_LAST_TAG } from "../types";
+import { EVENT_SUBMIT, DELETE_TAG } from "../types";
 
 const initialState = {
-  lastTags:[]
-}
+  lastTags: []
+};
 
 
-export const tagsReducer = (state=initialState,action)=>{
+export const tagsReducer = (state = initialState, action) => {
   switch (action.type) {
-    case ADD_TAG:
-      return {...state , lastTags: state.lastTags.concat(action.payload)}
-    case DELETE_LAST_TAG:
-      return {lastTags:state.lastTags.slice(-1)}
-    default:
-         return state;
-  }
-  
-}
+    case EVENT_SUBMIT:{
+      const tagsLen = action.payload.tags.length;
+      console.log(tagsLen);
+      return {
+        ...state, lastTags:[...state.lastTags.filter((_,index)=>index>tagsLen-1 ), ...action.payload.tags  ]
+      }
+    }
+    case DELETE_TAG:{
+      return {
+        ...state, lastTags:[...state.lastTags.filter((_,i)=>i !== action.payload)]
+      }
+    }
+        default:
+          return state;
+  };
+};

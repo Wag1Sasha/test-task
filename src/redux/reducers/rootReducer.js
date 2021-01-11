@@ -1,7 +1,9 @@
-import {combineReducers} from 'redux'
-import {tagsReducer} from './tagsReducer'
+import { combineReducers } from 'redux';
+import { photosReducer } from './photosReducer';
+import { tagsReducer } from './tagsReducer';
 
 
 export const rootReducer = combineReducers({
-  tags:tagsReducer
-})
+  tags: tagsReducer,
+  photos: photosReducer,
+});
