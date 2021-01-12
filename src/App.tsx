@@ -13,14 +13,14 @@ import {SingleTagPhotoPage} from './pages/SingleTagPhotoPage';
 export const App = () => {
 
   return (
-       <>
+       <div>
         <NavBar/>
         <Switch>
           <Route exact path="/" component={FormPage} />
           <Route path='/photos/:url' component={PhotosPage}/>
           <Route path='/photos/:url' component={SingleTagPhotoPage}/>
         </Switch>
-      </>
+      </div>
   );
 };
 

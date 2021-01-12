@@ -8,5 +8,5 @@ export const ImgContainer = styled.div `
 `
 
 export const PhotoPageWrapper = styled.div`
-display:flex;
+  display:inline-block;
 `

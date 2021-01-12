@@ -6,20 +6,20 @@ import { ImgContainer, PhotoPageWrapper } from '../styled/styledPhotosPage';
 import { asyncFetchPhotos } from '../redux/actions';
 
 
-export const SingleTagPhotoPage = () => {
+export const PhotosPage = () => {
 
-  let { tag } = useParams();
-  const state = useSelector(state => state.photos.fetchedPhotos);
+  let { url } = useParams<ParamTypesUrl>();
+  const selectIsOn = (state:IPropsPhotos) => state.photos.fetchedPhotos
+  const state = useSelector(selectIsOn)
   const dispatch = useDispatch();
-
   useEffect(() => {
-    dispatch(asyncFetchPhotos(tag))
-  },[tag,dispatch]);
+    dispatch(asyncFetchPhotos(url))
+  },[url,dispatch]);
 
 
   return (
     <PhotoPageWrapper>
-      {state.map(photo => (
+      {state.map((photo) => (
         <ImgContainer key={Math.random()}>
           <img src={photo.largeImageURL} width="300px" height="300px" alt='search'></img>
         </ImgContainer>
