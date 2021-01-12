@@ -1,5 +1,6 @@
 import styled from 'styled-components';
 
+
 export const ImgContainer = styled.div `
   display:inline-block;
   margin:25px;
@@ -8,5 +9,5 @@ export const ImgContainer = styled.div `
 `
 
 export const PhotoPageWrapper = styled.div`
-display:flex;
+  display:inline-block;
 `

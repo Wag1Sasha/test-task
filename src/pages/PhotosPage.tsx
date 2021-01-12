@@ -2,14 +2,15 @@ import React, { useEffect } from 'react';
 import { useParams } from 'react-router-dom';
 import { useSelector, useDispatch } from 'react-redux';
 
-import { ImgContainer, PhotoPageWrapper } from '../styled/styledPhotosPage';
 import { asyncFetchPhotos } from '../redux/actions';
+import { ImgContainer, PhotoPageWrapper } from '../styled/styledPhotosPage';
 
 
 export const PhotosPage = () => {
 
-  let { url } = useParams();
-  const state = useSelector(state => state.photos.fetchedPhotos);
+  const { url } = useParams<ParamTypesUrl>();
+  const selectIsOn = (state:IPropsPhotos) => state.photos.fetchedPhotos
+  const state = useSelector(selectIsOn)
   const dispatch = useDispatch();
 
   useEffect(() => {
@@ -19,7 +20,7 @@ export const PhotosPage = () => {
 
   return (
     <PhotoPageWrapper>
-      {state.map(photo => (
+      {state.map((photo) => (
         <ImgContainer key={Math.random()}>
           <img src={photo.largeImageURL} width="300px" height="300px" alt='search'></img>
         </ImgContainer>

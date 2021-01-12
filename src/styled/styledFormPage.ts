@@ -10,7 +10,5 @@ export const AppContainer = styled.div `
 
 export const ItemWrapper = styled.div`
   display:flex;
-  flex-direction:row;
   justify-content:space-between;
-  padding:10px;
 `
