@@ -1,2 +1,0 @@
-export const ADD_TAG = 'TAGS/ADD_TAG'
-export const DELETE_LAST_TAG = 'TAGS/DELETE_LAST_TAG'
