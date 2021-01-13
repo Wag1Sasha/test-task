@@ -1,17 +1,17 @@
 /// <reference types="react-scripts" />
 
 
-interface IPropsPhotos{
+interface IPropsPhotos {
   photos:{
     fetchedPhotos:Array<IPropsHits>
   }
 }
 
-interface IPropsFetchedPhotos{
+interface IPropsFetchedPhotos {
   fetchedPhotos:Array<IPropsHits>
 }
 
-interface IPropsHits{
+interface IPropsHits {
   comments?:number
   downloads?:number,
   favorites?: number
@@ -67,17 +67,17 @@ interface addTagActionType {
 
 type TagsActionTypes = addTagActionType | DeleteTagActionType
 
-interface StateTagsType{
+interface StateTagsType {
   lastTags:Array<string> | undefined[]
 }
-interface TagsState{
+interface TagsState {
   tags:StateTagsType
 }
 type A = undefined[]
 type B = string[]
-type Subject = A | B
+type Subject = (string | undefined)[]
 
-interface PropsTypeTagsList{
+interface PropsTypeTagsList {
   handleClick:(tag:string|undefined)=>void,
   handleDelete:(id:number)=>void,
   tagsState:Subject

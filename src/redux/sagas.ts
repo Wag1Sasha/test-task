@@ -8,13 +8,12 @@ export function* sagaWarcher() {
 };
 
 
-function* sagaWorker(payload :ReturnType<typeof asyncFetchPhotos>) {
+function* sagaWorker(payload: ReturnType<typeof asyncFetchPhotos>) {
   const data = yield call(requestPhotos,payload.url)
   yield put(addPhotoToStore(data.hits))
 };
 
-const requestPhotos =async(u:string)=>{
+const requestPhotos =async(u: string)=>{
   const res = await fetch(`https://pixabay.com/api/?key=19776687-7c6cc257a41e8830f998f821c&q=${u}`)
-  const data = await res.json();
-  return data;
+  return await res.json();
 };

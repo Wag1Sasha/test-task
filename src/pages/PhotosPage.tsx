@@ -9,7 +9,7 @@ import { ImgContainer, PhotoPageWrapper } from '../styled/styledPhotosPage';
 export const PhotosPage = () => {
 
   const { url } = useParams<ParamTypesUrl>();
-  const selectIsOn = (state:IPropsPhotos) => state.photos.fetchedPhotos
+  const selectIsOn = (state: IPropsPhotos) => state.photos.fetchedPhotos
   const state = useSelector(selectIsOn)
   const dispatch = useDispatch();
 

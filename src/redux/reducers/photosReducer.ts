@@ -6,7 +6,7 @@ const initialState = {
 };
 
 
-export const photosReducer = (state = initialState, action:ReturnType<typeof addPhotoToStore>) => {
+export const photosReducer = (state = initialState, action: ReturnType<typeof addPhotoToStore>) => {
   switch (action.type) {
     case ADD_PHOTO_TO_STORE:
       return {

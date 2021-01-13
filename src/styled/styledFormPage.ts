@@ -12,3 +12,7 @@ export const ItemWrapper = styled.div`
   display:flex;
   justify-content:space-between;
 `
+
+export const LastTagsWrapper = styled.div`
+  width:30%;
+`
