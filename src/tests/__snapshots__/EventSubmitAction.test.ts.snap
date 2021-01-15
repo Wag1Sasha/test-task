@@ -1,0 +1,16 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`Event submit action-creator Event Submit Action Render action-creator 1`] = `
+Array [
+  Object {
+    "payload": Object {
+      "tags": Array [
+        "1",
+        "2",
+        "3",
+      ],
+    },
+    "type": "TAGS/EVENT_SUBMIT",
+  },
+]
+`;

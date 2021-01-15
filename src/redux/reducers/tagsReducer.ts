@@ -1,12 +1,12 @@
 import { EVENT_SUBMIT, DELETE_TAG } from "../types";
 
-const initialState = {
+const initialState: StateTagsType = {
   lastTags: []
 };
 
 
 
-export const tagsReducer = (state = initialState, action: TagsActionTypes): StateTagsType=> {
+export const tagsReducer = (state = initialState, action: TagsActionTypes)=> {
   switch (action.type) {
     case EVENT_SUBMIT: {
       const tagsLen = action.payload.tags.length;

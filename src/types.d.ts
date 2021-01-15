@@ -1,16 +1,17 @@
 /// <reference types="react-scripts" />
 
 
+
+type IPropsFetchedPhotos =  {
+  fetchedPhotos:(IPropsHits|never)[]
+}
+
+type IPropsImageList = {
+  images: (IPropsHits|never)[]
+}
 interface IPropsPhotos {
-  photos:{
-    fetchedPhotos:Array<IPropsHits>
-  }
+  photos:IPropsFetchedPhotos
 }
-
-interface IPropsFetchedPhotos {
-  fetchedPhotos:Array<IPropsHits>
-}
-
 interface IPropsHits {
   comments?:number
   downloads?:number,
@@ -19,7 +20,7 @@ interface IPropsHits {
   imageHeight?: number
   imageSize?: number
   imageWidth?: number
-  largeImageURL?: string
+  largeImageURL: string
   likes?: number
   pageURL?: string
   previewHeight?: number
@@ -68,7 +69,7 @@ interface addTagActionType {
 type TagsActionTypes = addTagActionType | DeleteTagActionType
 
 interface StateTagsType {
-  lastTags:Array<string> | undefined[]
+  lastTags:(string|undefined)[]
 }
 interface TagsState {
   tags:StateTagsType

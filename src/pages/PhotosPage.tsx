@@ -3,7 +3,7 @@ import { useParams } from 'react-router-dom';
 import { useSelector, useDispatch } from 'react-redux';
 
 import { asyncFetchPhotos } from '../redux/actions';
-import { ImgContainer, PhotoPageWrapper } from '../styled/styledPhotosPage';
+import {ImageList} from '../components/ImageList';
 
 
 export const PhotosPage = () => {
@@ -19,12 +19,6 @@ export const PhotosPage = () => {
 
 
   return (
-    <PhotoPageWrapper>
-      {state.map((photo) => (
-        <ImgContainer key={Math.random()}>
-          <img src={photo.largeImageURL} width="300px" height="300px" alt='search'></img>
-        </ImgContainer>
-      ))}
-    </PhotoPageWrapper>
+    <ImageList images={state} />
   );
 };

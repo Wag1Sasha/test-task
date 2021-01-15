@@ -1,0 +1,36 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`TagsList component should render right Component should render right with tags 1`] = `
+<styled.div>
+  <styled.div
+    key="0"
+  >
+    <img
+      alt="search"
+      height="300px"
+      src="http://image.com/png"
+      width="300px"
+    />
+  </styled.div>
+  <styled.div
+    key="1"
+  >
+    <img
+      alt="search"
+      height="300px"
+      src="http://image.com/png"
+      width="300px"
+    />
+  </styled.div>
+  <styled.div
+    key="2"
+  >
+    <img
+      alt="search"
+      height="300px"
+      src="http://image.com/png"
+      width="300px"
+    />
+  </styled.div>
+</styled.div>
+`;

@@ -3,7 +3,7 @@ import { EVENT_SUBMIT,DELETE_TAG, ADD_PHOTO_TO_STORE, ASYNC_FETCH_PHOTOS } from 
 export const eventSubmit = (tags: ITagsProps):TagsActionTypes => ({
     type: EVENT_SUBMIT,
     payload: {
-      tags: Object.values(tags).filter(word => word.length > 0)
+      tags:[...Object.values(tags).filter(word => word.length > 0)]
     }
 });
 

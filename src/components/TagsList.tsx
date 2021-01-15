@@ -12,7 +12,7 @@ export const TagsList = ({handleClick,handleDelete,tagsState}: PropsTypeTagsList
         <Card.Header>Last tags :</Card.Header>
         <ListGroup variant="flush" >
           {tagsState.map((tag,index)=>(
-            <ItemWrapper key={Math.random()}>
+            <ItemWrapper key={index}>
               <ListGroup.Item as="span" action onClick={()=>{handleClick(tag)}}>{tag}</ListGroup.Item >
               <Button as="button" variant="secondary" size="sm" onClick={()=>{handleDelete(index)}}>delete</Button>
             </ItemWrapper>
