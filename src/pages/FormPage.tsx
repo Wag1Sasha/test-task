@@ -13,8 +13,8 @@ export const FormPage = () => {
   const selectIsOn = (state: TagsState) => state.tags.tags;
   const tagsState = useSelector(selectIsOn);
 
-  const handleDelete = (i: number) => {
-    dispatch(deleteTag(i));
+  const handleDelete = (index: number) => {
+    dispatch(deleteTag(index));
   };
 
   const handleAddition = (tag: TagPropsType) => {

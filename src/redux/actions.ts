@@ -10,9 +10,9 @@ export const dragNDrop = (tags: TagPropsType[]) => ({
   payload: tags,
 });
 
-export const deleteTag = (i: number): TagsActionTypes => ({
+export const deleteTag = (index: number): TagsActionTypes => ({
   type: DELETE_TAG,
-  payload: i,
+  payload: index,
 });
 
 export const addPhotoToStore = (photos: IPropsHits) => ({
