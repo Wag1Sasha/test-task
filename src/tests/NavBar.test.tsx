@@ -3,7 +3,7 @@ import { shallow } from 'enzyme';
 
 import { NavBar } from '../components/NavBar';
 
-test('Render NavBar component', () => {
+it('Render NavBar component', () => {
   const component = shallow(<NavBar />);
   expect(component).toMatchSnapshot();
 });

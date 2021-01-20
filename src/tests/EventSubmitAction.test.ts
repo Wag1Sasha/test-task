@@ -9,7 +9,6 @@ describe('Event submit action-creator', () => {
   beforeEach(() => {
     store.clearActions();
   });
-
   it('Action-creator works correct', () => {
     const expectedActions = [
       {
@@ -17,7 +16,6 @@ describe('Event submit action-creator', () => {
         payload: { text: 'text', id: 'text' },
       },
     ];
-
     store.dispatch(selectActions.eventSubmit(tag));
     expect(store.getActions()).toEqual(expectedActions);
   });

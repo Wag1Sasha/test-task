@@ -11,7 +11,6 @@ describe('tags reducer', () => {
     };
     expect(tagsReducer({ tags: [] }, expectedAction)).toEqual(tagsReducer({ tags: [] }, eventSubmit(text)));
   });
-
   it('should delete a tag from store', () => {
     const i = 0;
     const expectedAction = {
