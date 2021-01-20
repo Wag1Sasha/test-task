@@ -1,56 +1,42 @@
-import React, { useState } from 'react';
+import React from 'react';
 import { useSelector, useDispatch } from 'react-redux';
-import { useHistory } from "react-router-dom";
-import { deleteTag, eventSubmit} from '../redux/actions';
+import { useHistory } from 'react-router-dom';
+import { WithContext as ReactTags } from 'react-tag-input';
 
-import {TagsList} from '../components/TagsList'
+import { deleteTag, dragNDrop, eventSubmit } from '../redux/actions';
 import { AppContainer } from '../styled/styledFormPage';
-import {Form} from '../components/Form'
-
-
+import '../styled/react-tags-input.css';
 
 export const FormPage = () => {
-
   const history = useHistory();
   const dispatch = useDispatch();
-  const selectIsOn = (state: TagsState) => state.tags.lastTags
-  const tagsState = useSelector(selectIsOn)
-  const [tags, setTags] = useState({
-    tag1:'',
-    tag2:'',
-    tag3:''
-  });
-  
-  const makeUrl = (allTags: ITagsProps): string => {
-    return Object.values(allTags).filter(v=>v.length>0).join('+').replace(/\s+/g,'');
+  const selectIsOn = (state: TagsState) => state.tags.tags;
+  const tagsState = useSelector(selectIsOn);
+
+  const handleDelete = (i: number) => {
+    dispatch(deleteTag(i));
   };
 
-  const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
-    const {name , value} = e.target;
-    setTags({...tags, [name]:value});
+  const handleAddition = (tag: TagPropsType) => {
+    dispatch(eventSubmit(tag));
+    history.push(`/photos/${tag.text}`);
   };
 
-  const handleSubmit = (e: React.FormEvent<HTMLFormElement>) => {
-     e.preventDefault();
-     dispatch(eventSubmit(tags));
-     setTags({tag1:'',tag2:'',tag3:''})
-     history.push(`/photos/${makeUrl(tags)}`)
-  };
-
-  const handleClick = (tag: string | undefined) =>{
-    history.push(`/photos/${tag}`)
-  };
-
-  const handleDelete = (i: number) =>{
-    dispatch(deleteTag(i))
+  const dragNDropHandler = ({ tag, currPos, newPos }: any): void => {
+    const newTags = tagsState.slice();
+    tag = newTags.splice(currPos, 1);
+    newTags.splice(newPos, 0, ...tag);
+    dispatch(dragNDrop(newTags));
   };
 
   return (
-    <div>
-      <AppContainer>
-          <Form handleChange={handleChange} handleSubmit={handleSubmit} tags={tags} />
-          <TagsList handleClick={handleClick} handleDelete={handleDelete} tagsState={tagsState} />
-      </AppContainer>
-      </div>
+    <AppContainer>
+      <ReactTags
+        tags={tagsState}
+        handleDelete={handleDelete}
+        handleAddition={handleAddition}
+        handleDrag={dragNDropHandler}
+      />
+    </AppContainer>
   );
 };
