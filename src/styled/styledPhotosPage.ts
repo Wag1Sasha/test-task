@@ -1,13 +1,16 @@
 import styled from 'styled-components';
 
-
-export const ImgContainer = styled.div `
-  display:inline-block;
-  margin:25px;
-  align-items:center;
-  border:5px solid gray;
+export const TagsContainer = styled.div`
+  width:50%;
+  margin:0 auto;
 `
+
+export const ImgContainer = styled.div`
+  margin: 15px;
+`;
 
 export const PhotoPageWrapper = styled.div`
-  display:inline-block;
-`
+  width: 100%;
+  display: flex;
+  flex-wrap: wrap;
+`;

@@ -1,0 +1,12 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`Add Photo To Store Action Render action-creator 1`] = `
+Array [
+  Object {
+    "payload": Object {
+      "largeImageURL": "http://image.com/image.png",
+    },
+    "type": "PHOTOS/ADD_PHOTO_TO_STORE",
+  },
+]
+`;

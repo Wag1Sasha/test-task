@@ -1,85 +1,98 @@
 /// <reference types="react-scripts" />
 
+type IPropsFetchedPhotos = {
+  fetchedPhotos: (IPropsHits | never)[];
+};
 
+type IPropsImageList = {
+  images: (IPropsHits | never)[];
+};
+interface IPropsModal {
+  image: string;
+  show: boolean;
+  handleClose: () => void;
+}
 interface IPropsPhotos {
-  photos:{
-    fetchedPhotos:Array<IPropsHits>
-  }
+  photos: IPropsFetchedPhotos;
 }
-
-interface IPropsFetchedPhotos {
-  fetchedPhotos:Array<IPropsHits>
-}
-
 interface IPropsHits {
-  comments?:number
-  downloads?:number,
-  favorites?: number
-  id?: number
-  imageHeight?: number
-  imageSize?: number
-  imageWidth?: number
-  largeImageURL?: string
-  likes?: number
-  pageURL?: string
-  previewHeight?: number
-  previewURL?: string
-  previewWidth?: number
-  tags?: string
-  type?: string
-  user?: string
-  userImageURL?: string
-  user_id?: number
-  views?: number
-  webformatHeight?: number
-  webformatURL?: string
-  webformatWidth?: number
+  comments?: number;
+  downloads?: number;
+  favorites?: number;
+  id?: number;
+  imageHeight?: number;
+  imageSize?: number;
+  imageWidth?: number;
+  largeImageURL: string;
+  likes?: number;
+  pageURL?: string;
+  previewHeight?: number;
+  previewURL?: string;
+  previewWidth?: number;
+  tags?: string;
+  type?: string;
+  user?: string;
+  userImageURL?: string;
+  user_id?: number;
+  views?: number;
+  webformatHeight?: number;
+  webformatURL?: string;
+  webformatWidth?: number;
 }
-
 
 type ParamTypesTag = {
-  tag:string
-}
+  tag: string;
+};
 
 type ParamTypesUrl = {
-  url:string
-}
+  url: string;
+};
 
 type ITagsProps = {
-  tag1:string,
-  tag2:string,
-  tag3:string
-}
+  tag1: string;
+  tag2: string;
+  tag3: string;
+};
 
 type TagsType = {
-  tags:string[] 
-}
+  tags: string[];
+};
 
 interface DeleteTagActionType {
-  type: string
-  payload: number
+  type: string;
+  payload: number;
 }
 
 interface addTagActionType {
-  type: string
-  payload: TagsType<string>
+  type: string;
+  payload: TagsType<string>;
 }
 
-type TagsActionTypes = addTagActionType | DeleteTagActionType
+type TagsActionTypes = addTagActionType | DeleteTagActionType;
 
 interface StateTagsType {
-  lastTags:Array<string> | undefined[]
+  tags: TagPropsType[];
 }
 interface TagsState {
-  tags:StateTagsType
+  tags: StateTagsType;
 }
-type A = undefined[]
-type B = string[]
-type Subject = (string | undefined)[]
+type A = undefined[];
+type Tag = string[];
+type Subject = (Tag | never)[];
 
 interface PropsTypeTagsList {
-  handleClick:(tag:string|undefined)=>void,
-  handleDelete:(id:number)=>void,
-  tagsState:Subject
+  handleClick: (tag: string | undefined) => void;
+  handleDelete: (id: number) => void;
+  tagsState: (string | never)[];
 }
 
+interface TagPropsType {
+  text: string;
+  id: string;
+}
+
+interface dragHadlerType {
+  tag: TagPropsType;
+  currPos: number;
+  newPos: number;
+}

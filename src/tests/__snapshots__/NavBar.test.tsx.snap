@@ -1,0 +1,27 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`Render NavBar component 1`] = `
+<Navbar
+  bg="dark"
+  collapseOnSelect={false}
+  expand={true}
+  variant="dark"
+>
+  <NavbarBrand
+    href="#home"
+  >
+    Test-Task
+  </NavbarBrand>
+  <Nav
+    className="mr-auto"
+    fill={false}
+    justify={false}
+  >
+    <Link
+      to="/"
+    >
+      Home
+    </Link>
+  </Nav>
+</Navbar>
+`;

@@ -1,85 +1,47 @@
-import React, { useState } from 'react';
+import React from 'react';
 import { useSelector, useDispatch } from 'react-redux';
-import { useHistory } from "react-router-dom";
-import { deleteTag, eventSubmit} from '../redux/actions';
+import { WithContext as ReactTags } from 'react-tag-input';
 
-import {TagsList} from '../components/TagsList'
-import { AppContainer } from '../styled/styledFormPage';
-import InputGroup from 'react-bootstrap/InputGroup';
-import FormControl from 'react-bootstrap/FormControl';
-import Button from 'react-bootstrap/Button';
-
+import {deleteTag,eventSubmit,dragNDrop} from '../redux/ducks/TagsDucks';
+import {asyncFetchPhotos}  from '../redux/ducks/PhotosDucks';
+import { TagsContainer } from '../styled/styledPhotosPage';
+import '../vendors/react-tags-input.css';
+import { ImageList } from '../components/ImageList';
 
 export const FormPage = () => {
-
-  const history = useHistory();
   const dispatch = useDispatch();
-  const selectIsOn = (state: TagsState) => state.tags.lastTags
-  const tagsState = useSelector(selectIsOn)
-  const [tags, setTags] = useState({
-    tag1:'',
-    tag2:'',
-    tag3:''
-  });
-  
-  const makeUrl = (allTags: ITagsProps): string => {
-    return Object.values(allTags).filter(v=>v.length>0).join('+').replace(/\s+/g,'');
+  const tags = (state: TagsState) => state.tags.tags;
+  const tagsState = useSelector(tags);
+  const images = (state: IPropsPhotos) => state.photos.fetchedPhotos;
+  const imagesState = useSelector(images);
+
+  const handleDelete = (index: number) => {
+    dispatch(deleteTag(index));
   };
 
-  const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
-    const {name , value} = e.target;
-    setTags({...tags, [name]:value});
+  const handleAddition = (tag: TagPropsType) => {
+    dispatch(eventSubmit(tag));
+    dispatch(asyncFetchPhotos(tag.text));
   };
 
-  const handleSubmit = (e: React.FormEvent<HTMLFormElement>) => {
-     e.preventDefault();
-     dispatch(eventSubmit(tags));
-     setTags({tag1:'',tag2:'',tag3:''})
-     history.push(`/photos/${makeUrl(tags)}`)
-  };
-
-  const handleClick = (tag: string | undefined) =>{
-    history.push(`/photos/${tag}`)
-  };
-
-  const handleDelete = (i: number) =>{
-    dispatch(deleteTag(i))
+  const dragNDropHandler = ({ tag, currPos, newPos }: any): void => {
+    const newTags = tagsState.slice();
+    tag = newTags.splice(currPos, 1);
+    newTags.splice(newPos, 0, ...tag);
+    dispatch(dragNDrop(newTags));
   };
 
   return (
-      <AppContainer>
-          <form onSubmit={handleSubmit}>
-            <InputGroup className="mb-3">
-              <FormControl
-              type="text"
-              placeholder="type tags..."
-              aria-describedby="basic-addon2"
-              name='tag1'
-              value={tags.tag1 || ''}
-              onChange={handleChange}
-              />
-              <FormControl
-              type="text"
-              name='tag2'
-              placeholder="type tags..."
-              aria-describedby="basic-addon2"
-              value={tags.tag2 || ''}
-              onChange={handleChange}
-              />
-              <FormControl
-              type="text"
-              name='tag3'
-              placeholder="type tags..."
-              aria-describedby="basic-addon2"
-              value={tags.tag3 || ''}
-              onChange={handleChange}
-              />
-              <InputGroup.Prepend>
-                <Button variant="outline-secondary" type="submit">Search</Button>
-              </InputGroup.Prepend>
-            </InputGroup>
-          </form>
-          <TagsList handleClick={handleClick} handleDelete={handleDelete} tagsState={tagsState} />
-      </AppContainer>
+    <>
+      <TagsContainer>
+        <ReactTags
+          tags={tagsState}
+          handleDelete={handleDelete}
+          handleAddition={handleAddition}
+          handleDrag={dragNDropHandler}
+        />
+      </TagsContainer>
+      <ImageList images={imagesState} />
+    </>
   );
 };

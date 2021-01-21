@@ -1,0 +1,38 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`Render ModalWindow component Should render Modal 1`] = `
+<Modal
+  animation={true}
+  autoFocus={true}
+  backdrop={true}
+  centered={true}
+  dialogAs={
+    Object {
+      "$$typeof": Symbol(react.forward_ref),
+      "displayName": "ModalDialog",
+      "render": [Function],
+    }
+  }
+  enforceFocus={true}
+  keyboard={true}
+  onHide={[Function]}
+  restoreFocus={true}
+  show={true}
+  size="xl"
+>
+  <img
+    alt="bigPicture"
+    src="/photos/image"
+  />
+  <ModalFooter>
+    <Button
+      active={false}
+      disabled={false}
+      onClick={[Function]}
+      variant="secondary"
+    >
+      Close
+    </Button>
+  </ModalFooter>
+</Modal>
+`;
