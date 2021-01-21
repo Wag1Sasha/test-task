@@ -1,10 +1,11 @@
 import configureStore from 'redux-mock-store';
-import * as selectActions from '../redux/actions';
+import * as selectActions from '../redux/ducks/PhotosDucks';
 
 describe('Add Photo To Store Action', () => {
   const mockStore = configureStore();
   const store = mockStore();
   const photos = { largeImageURL: 'http://image.com/image.png' };
+
   beforeEach(() => {
     store.clearActions();
   });
@@ -13,7 +14,7 @@ describe('Add Photo To Store Action', () => {
     const expectedActions = [
       {
         type: 'PHOTOS/ADD_PHOTO_TO_STORE',
-        payload: { largeImageURL: 'http://image.com/image.png' },
+        payload: photos,
       },
     ];
     store.dispatch(selectActions.addPhotoToStore(photos));

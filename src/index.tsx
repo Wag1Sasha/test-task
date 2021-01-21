@@ -6,8 +6,8 @@ import { Provider } from 'react-redux';
 import { BrowserRouter as Router } from 'react-router-dom';
 import { applyMiddleware, compose, createStore } from 'redux';
 
-import { rootReducer } from './redux/reducers/rootReducer';
-import { sagaWarcher } from './redux/sagas';
+import rootReducer from './redux/ducks/rootReducer';
+import { sagaWarcher } from './redux/ducks/PhotosDucks';
 import { App } from './App';
 
 const saga = createSagaMiddleware();

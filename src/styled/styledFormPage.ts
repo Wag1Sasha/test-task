@@ -1,6 +1,6 @@
 import styled from 'styled-components';
 
-export const AppContainer = styled.div`
+export const TagsContainer = styled.div`
   display: flex;
   flex-direction: column;
   width: 75%;

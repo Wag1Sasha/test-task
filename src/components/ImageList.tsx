@@ -2,7 +2,8 @@ import React, { useState } from 'react';
 import { useHistory, useLocation } from 'react-router-dom';
 
 import { ModalWindow } from './ModalWindow';
-import { ImgContainer, PhotoPageWrapper } from '../styled/styledPhotosPage';
+import { PhotoPageWrapper, ImgContainer } from '../styled/styledPhotosPage';
+import { Col, Container, Row } from 'react-bootstrap';
 
 export const ImageList = ({ images }: IPropsImageList) => {
   const location = useLocation().pathname;
@@ -19,7 +20,7 @@ export const ImageList = ({ images }: IPropsImageList) => {
   const handleClick = (url: string) => {
     handleShow();
     setCurrPhoto(url);
-    history.push(`${location}/Photo`);
+    window.history.pushState({}, '', '/Photo');
   };
 
   const handleClose = () => {
@@ -29,12 +30,18 @@ export const ImageList = ({ images }: IPropsImageList) => {
 
   return (
     <PhotoPageWrapper>
-      {images.map((image, index) => (
-        <ImgContainer key={index} onClick={() => handleClick(image.largeImageURL)}>
-          <img src={image.largeImageURL} width="300px" height="300px" alt="PhotoCard" />
-        </ImgContainer>
-      ))}
-      <ModalWindow image={currPhoto} show={show} handleClose={handleClose}></ModalWindow>
+      <Container fluid>
+        <Row lg={4} xl={5} md={3} xs={1} sm={2}>
+          {images.map((image, index) => (
+            <Col key={index} onClick={() => handleClick(image.largeImageURL)}>
+              <ImgContainer>
+                <img src={image.largeImageURL} width="250px" height="250px" alt="PhotoCard" />
+              </ImgContainer>
+            </Col>
+          ))}
+          <ModalWindow image={currPhoto} show={show} handleClose={handleClose} />
+        </Row>
+      </Container>
     </PhotoPageWrapper>
   );
 };

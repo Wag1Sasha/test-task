@@ -1,5 +1,6 @@
 import React from 'react';
 import { shallow } from 'enzyme';
+
 import { ModalWindow } from '../components/ModalWindow';
 
 describe('Render ModalWindow component', () => {
@@ -8,6 +9,7 @@ describe('Render ModalWindow component', () => {
     show: true,
     handleClose: () => {},
   };
+
   it('Should render Modal', () => {
     const component = shallow(<ModalWindow {...props} />);
     expect(component).toMatchSnapshot();

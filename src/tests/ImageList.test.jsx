@@ -1,8 +1,8 @@
 import React from 'react';
-
-import { ImageList } from '../components/ImageList';
 import { shallow } from 'enzyme';
 import { MemoryRouter } from 'react-router-dom';
+
+import { ImageList } from '../components/ImageList';
 
 it('Component should render right without tags', () => {
   const props = { images: [] };

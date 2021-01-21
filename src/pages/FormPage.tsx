@@ -1,17 +1,19 @@
 import React from 'react';
 import { useSelector, useDispatch } from 'react-redux';
-import { useHistory } from 'react-router-dom';
 import { WithContext as ReactTags } from 'react-tag-input';
 
-import { deleteTag, dragNDrop, eventSubmit } from '../redux/actions';
-import { AppContainer } from '../styled/styledFormPage';
-import '../styled/react-tags-input.css';
+import { deleteTag, eventSubmit, dragNDrop } from '../redux/ducks/TagsDucks';
+import { asyncFetchPhotos } from '../redux/ducks/PhotosDucks';
+import { TagsContainer } from '../styled/styledFormPage';
+import '../vendors/react-tags-input.css';
+import { ImageList } from '../components/ImageList';
 
 export const FormPage = () => {
-  const history = useHistory();
   const dispatch = useDispatch();
-  const selectIsOn = (state: TagsState) => state.tags.tags;
-  const tagsState = useSelector(selectIsOn);
+  const tags = (state: TagsState) => state.tags.tags;
+  const tagsState = useSelector(tags);
+  const images = (state: IPropsPhotos) => state.photos.fetchedPhotos;
+  const imagesState = useSelector(images);
 
   const handleDelete = (index: number) => {
     dispatch(deleteTag(index));
@@ -19,7 +21,7 @@ export const FormPage = () => {
 
   const handleAddition = (tag: TagPropsType) => {
     dispatch(eventSubmit(tag));
-    history.push(`/photos/${tag.text}`);
+    dispatch(asyncFetchPhotos(tag.text));
   };
 
   const dragNDropHandler = ({ tag, currPos, newPos }: any): void => {
@@ -30,13 +32,16 @@ export const FormPage = () => {
   };
 
   return (
-    <AppContainer>
-      <ReactTags
-        tags={tagsState}
-        handleDelete={handleDelete}
-        handleAddition={handleAddition}
-        handleDrag={dragNDropHandler}
-      />
-    </AppContainer>
+    <>
+      <TagsContainer>
+        <ReactTags
+          tags={tagsState}
+          handleDelete={handleDelete}
+          handleAddition={handleAddition}
+          handleDrag={dragNDropHandler}
+        />
+      </TagsContainer>
+      <ImageList images={imagesState} />
+    </>
   );
 };
