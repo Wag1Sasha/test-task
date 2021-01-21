@@ -1,9 +1,9 @@
 import React, { useState } from 'react';
 import { useHistory, useLocation } from 'react-router-dom';
+import { Col, Container, Row } from 'react-bootstrap';
 
 import { ModalWindow } from './ModalWindow';
 import { PhotoPageWrapper, ImgContainer } from '../styled/styledPhotosPage';
-import { Col, Container, Row } from 'react-bootstrap';
 
 export const ImageList = ({ images }: IPropsImageList) => {
   const location = useLocation().pathname;
@@ -31,7 +31,7 @@ export const ImageList = ({ images }: IPropsImageList) => {
   return (
     <PhotoPageWrapper>
       <Container fluid>
-        <Row lg={4} xl={5} md={3} xs={1} sm={2}>
+        <Row lg={4} xl={5} md={3} sm={2} xs={1}>
           {images.map((image, index) => (
             <Col key={index} onClick={() => handleClick(image.largeImageURL)}>
               <ImgContainer>

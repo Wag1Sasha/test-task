@@ -2,9 +2,9 @@ import React from 'react';
 import { useSelector, useDispatch } from 'react-redux';
 import { WithContext as ReactTags } from 'react-tag-input';
 
-import { deleteTag, eventSubmit, dragNDrop } from '../redux/ducks/TagsDucks';
-import { asyncFetchPhotos } from '../redux/ducks/PhotosDucks';
-import { TagsContainer } from '../styled/styledFormPage';
+import {deleteTag,eventSubmit,dragNDrop} from '../redux/ducks/TagsDucks';
+import {asyncFetchPhotos}  from '../redux/ducks/PhotosDucks';
+import { TagsContainer } from '../styled/styledPhotosPage';
 import '../vendors/react-tags-input.css';
 import { ImageList } from '../components/ImageList';
 
