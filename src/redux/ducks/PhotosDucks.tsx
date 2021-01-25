@@ -3,9 +3,12 @@ import { takeEvery, put, call } from 'redux-saga/effects';
 export const REQUEST_PHOTOS_BY_VALUE = 'PHOTOS/REQUEST_PHOTOS_BY_VALUE';
 export const ASYNC_FETCH_PHOTOS = 'PHOTOS/ASYNC_FETCH_PHOTOS';
 export const ADD_PHOTO_TO_STORE = 'PHOTOS/ADD_PHOTO_TO_STORE';
+export const SHOW_LOADER = 'PHOTOS/SHOW_LOADER';
+export const HIDE_LOADER = 'PHOTOS/HIDE_LOADER';
 
 const initialState = {
   fetchedPhotos: [],
+  isLoading: false,
 };
 
 const photosReducer = (state = initialState, action: ReturnType<typeof addPhotoToStore>) => {
@@ -14,6 +17,16 @@ const photosReducer = (state = initialState, action: ReturnType<typeof addPhotoT
       return {
         ...state,
         fetchedPhotos: action.payload,
+      };
+    case SHOW_LOADER:
+      return {
+        ...state,
+        isLoading: true,
+      };
+    case HIDE_LOADER:
+      return {
+        ...state,
+        isLoading: false,
       };
     default:
       return state;
@@ -28,6 +41,14 @@ export const addPhotoToStore = (photos: IPropsHits) => ({
 export const asyncFetchPhotos = (url: string) => ({
   type: ASYNC_FETCH_PHOTOS,
   url,
+});
+
+export const showLoader = () => ({
+  type: SHOW_LOADER,
+});
+
+export const hideLoader = () => ({
+  type: HIDE_LOADER,
 });
 
 export function* sagaWarcher() {

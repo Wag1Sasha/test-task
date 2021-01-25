@@ -1,36 +1,13 @@
 import React from 'react';
-import { useSelector, useDispatch } from 'react-redux';
 import { WithContext as ReactTags } from 'react-tag-input';
 
-import { deleteTag, eventSubmit, dragNDrop } from '../redux/ducks/TagsDucks';
-import { asyncFetchPhotos } from '../redux/ducks/PhotosDucks';
+import { useFormHook } from '../hooks/useFormHook';
+import { ImageList } from '../components/ImageList';
 import { TagsContainer } from '../styled/styledPhotosPage';
 import '../vendors/react-tags-input.css';
-import { ImageList } from '../components/ImageList';
 
 export const FormPage = () => {
-  const dispatch = useDispatch();
-  const tags = (state: TagsState) => state.tags.tags;
-  const tagsState = useSelector(tags);
-  const images = (state: IPropsPhotos) => state.photos.fetchedPhotos;
-  const imagesState = useSelector(images);
-
-  const handleDelete = (index: number) => {
-    dispatch(deleteTag(index));
-  };
-
-  const handleAddition = (tag: TagPropsType) => {
-    dispatch(eventSubmit(tag));
-    dispatch(asyncFetchPhotos(tag.text));
-  };
-
-  const dragNDropHandler = (tag: { id: string; text: string }, currPos: number, newPos: number) => {
-    const newTags = tagsState.slice();
-    newTags.splice(currPos, 1);
-    newTags.splice(newPos, 0, tag);
-    dispatch(dragNDrop([...newTags]));
-  };
-
+  const { tagsState, imagesState, handleDelete, handleAddition, dragNDropHandler, loaderState } = useFormHook();
   return (
     <>
       <TagsContainer>
@@ -41,7 +18,7 @@ export const FormPage = () => {
           handleDrag={dragNDropHandler}
         />
       </TagsContainer>
-      <ImageList images={imagesState} />
+      <ImageList images={imagesState} loaderState={loaderState} />
     </>
   );
 };

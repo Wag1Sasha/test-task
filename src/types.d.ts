@@ -2,10 +2,12 @@
 
 type IPropsFetchedPhotos = {
   fetchedPhotos: (IPropsHits | never)[];
+  isLoading: boolean;
 };
 
 type IPropsImageList = {
   images: (IPropsHits | never)[];
+  loaderState: boolean;
 };
 interface IPropsModal {
   image: string;
@@ -95,4 +97,12 @@ interface dragHadlerType {
   tag: TagPropsType;
   currPos: number;
   newPos: number;
+}
+
+interface IFormHookProps {
+  handleDelete: (index: number) => void;
+  handleAddition: (tag: TagPropsType) => void;
+  dragNDropHandler: (tag: { id: string; text: string }, currPos: number, newPos: number) => void;
+  tagsState: TagsState;
+  imagesState: IPropsPhotos;
 }
